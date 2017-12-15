@@ -4,8 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node public/server/app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cdk": "^5.0.1",
+    "@angular/material": "^5.0.1",
+    "angular": "^1.6.7",
+    "angular-animate": "^1.6.7",
+    "angular-aria": "^1.6.7",
+    "angular-material": "^1.1.5",
+    "angular-sanitize": "^1.6.7",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
 }
