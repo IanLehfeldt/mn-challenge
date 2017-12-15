@@ -7,17 +7,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MN Senate Code Challenge</title>
+    
     <script src="./vendors/angular.min.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
     <script src="./script/client.js"></script>
     <script src="./script/service.js"></script>
 
-
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
     <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body ng-app="myApp">
     <div ng-controller="MyAppController as mac">
-
+        <md-card>
+            <h1>Hello World</h1>
+        </md-card>
     </div>
 </body>
 
