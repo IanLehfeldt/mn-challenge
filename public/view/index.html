@@ -33,20 +33,21 @@
 
             <div layout="column" flex="80" class="leftPad">
                 <div layout="row" layout-align="space-between center">
-                    <span>Select a Senator</span>
-                    <md-select ng-model="mac.contact.senator" placeholder="Senator" class="md-no-underline">
-                        <md-optgroup label="Senators">
-                            <md-option ng-repeat="senator in mac.senatorList" value="{{senator}}">{{senator}}</md-option>
-                        </md-optgroup>
-                    </md-select>
+                    <h3>Select a Senator or.. <br> Select a District</h3>
+                    <div layout="column" flex="40">
+                        <md-select ng-model="mac.contact.senator" placeholder="Senator" class="md-no-underline" ng-change="mac.listSelect('Senator')">
+                            <md-optgroup label="Senators">
+                                <md-option ng-repeat="senator in mac.senatorList" value="{{senator}}">{{senator}}</md-option>
+                            </md-optgroup>
+                        </md-select>
 
-                    <span>Or.. </span>
-                    <span>Select a District</span>
-                    <md-select ng-model="mac.contact.district" placeholder="District" class="md-no-underline">
-                        <md-optgroup label="Districts">
-                            <md-option ng-repeat="district in mac.districtList" value="{{district}}">{{district}}</md-option>
-                        </md-optgroup>
-                    </md-select>
+
+                        <md-select ng-model="mac.contact.district" placeholder="District" class="md-no-underline" ng-change="mac.listSelect('District')">
+                            <md-optgroup label="Districts">
+                                <md-option ng-repeat="district in mac.districtList" value="{{district}}">{{district}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </div>
                 </div>
             </div>
 

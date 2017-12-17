@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', ['ngMaterial']);
 
-myApp.controller('MyAppController', function() {
-    console.log('MyApp and App Controller is loaded.');
+myApp.controller('MyAppController', ['MyAppService', function(MyAppService) {
+    // console.log('MyApp and App Controller is loaded.');
     const vm = this;
 
     vm.contact = {};
@@ -22,7 +22,18 @@ myApp.controller('MyAppController', function() {
         "District 5"
     ];
 
+    //Handles selecting a senator or district
+    vm.listSelect = (select) => {
+        console.log('List selected as: ', select);
+        if(select === 'Senator') {
+            vm.contact.district = undefined;
+        } else if(select === 'District'){
+            vm.contact.senator = undefined;
+        }
+    }
+
+    //Handles app submission
     vm.submitMessage = (contact) => {
         console.log('Submit button clicked: ', contact);
     }
-});
+}]);
