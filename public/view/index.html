@@ -25,21 +25,67 @@
 
 <body ng-app="myApp">
     <div ng-controller="MyAppController as mac">
+
         <md-card>
             <md-card-header>
                 <h1>Contact Form</h1>
             </md-card-header>
+
+            <div layout="column" flex="80" class="leftPad">
+                <div layout="row" layout-align="space-between center">
+                    <span>Select a Senator</span>
+                    <md-select ng-model="mac.contact.senator" placeholder="Senator" class="md-no-underline">
+                        <md-optgroup label="Senators">
+                            <md-option ng-repeat="senator in mac.senatorList" value="{{senator}}">{{senator}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+
+                    <span>Or.. </span>
+                    <span>Select a District</span>
+                    <md-select ng-model="mac.contact.district" placeholder="District" class="md-no-underline">
+                        <md-optgroup label="Districts">
+                            <md-option ng-repeat="district in mac.districtList" value="{{district}}">{{district}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </div>
+            </div>
+
             <md-card-content>
+                <div layout="column">
+                    <div layout="row">
+                        <md-input-container flex="40">
+                            <md-icon md-svg-src="./img/account-box-black-24px.svg"></md-icon>
+                            <label>Name</label>
+                            <input ng-model="mac.contact.name" type="text">
+                        </md-input-container>
+                        <md-input-container flex="40">
+                            <md-icon md-svg-src="./img/phone-black-24px.svg"></md-icon>
+                            <label>Phone Number</label>
+                            <input ng-model="mac.contact.phoneNumber" type="text">
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="40">
+                            <md-icon md-svg-src="./img/email-black-24px.svg"></md-icon>
+                            <label>Email</label>
+                            <input ng-model="mac.contact.email" type="text">
+                        </md-input-container>
+                        <md-input-container flex="40">
+                            <md-icon md-svg-src="./img/home-black-24px.svg"></md-icon>
+                            <label>Address</label>
+                            <input ng-model="mac.contact.address" type="text">
+                        </md-input-container>
+                    </div>
+                    <md-input-container>
+                        <textarea name="textArea" placeholder="Write a message!" ng-model="mac.contact.message"></textarea>
+                    </md-input-container>
+                </div>
 
-                <md-input-container>
-                    <label>Name:</label>
-                    <input ng-model="contact.name" type="text">
-                </md-input-container>
-
+                <md-button class="md-raised md-primary floatRight" ng-click="mac.submitMessage(mac.contact)">Submit</md-button>
             </md-card-content>
         </md-card>
     </div>
-    
+
 </body>
 
 </html>
