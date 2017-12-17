@@ -3,6 +3,7 @@ var myApp = angular.module('myApp', ['ngMaterial']);
 myApp.controller('MyAppController', ['MyAppService', function(MyAppService) {
     // console.log('MyApp and App Controller is loaded.');
     const vm = this;
+    
 
     vm.contact = {};
     
@@ -34,6 +35,7 @@ myApp.controller('MyAppController', ['MyAppService', function(MyAppService) {
 
     //Handles app submission
     vm.submitMessage = (contact) => {
-        console.log('Submit button clicked: ', contact);
+        // console.log('Submit button clicked: ', contact);
+        MyAppService.submitMessage(contact);
     }
 }]);
