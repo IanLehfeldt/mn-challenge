@@ -14,6 +14,7 @@
     <!-- Angular Material Dependencies -->
     <script src="./vendors/angular-aria.min.js"></script>
     <script src="./vendors/angular-animate.min.js"></script>
+    <script src="./vendors/angular-recaptcha.min.js"></script>
     <script src="./vendors/angular-material.js"></script>
 
     <script src="./script/client.js"></script>
@@ -32,63 +33,66 @@
             <md-card-header>
                 <h1>Contact Form</h1>
             </md-card-header>
+            <form name="" >
+                <div layout="column" flex="80" class="leftPad">
+                    <div layout="row" layout-align="space-between center">
+                        <h3>Select a Senator or..
+                            <br> Select a District</h3>
+                        <div layout="column" flex="40">
+                            <md-select ng-model="mac.contact.senator" placeholder="Senator" class="md-no-underline" ng-change="mac.listSelect('Senator')">
+                                <md-optgroup label="Senators">
+                                    <md-option ng-repeat="senator in mac.senatorList" value="{{senator}}">{{senator}}</md-option>
+                                </md-optgroup>
+                            </md-select>
 
-            <div layout="column" flex="80" class="leftPad">
-                <div layout="row" layout-align="space-between center">
-                    <h3>Select a Senator or.. <br> Select a District</h3>
-                    <div layout="column" flex="40">
-                        <md-select ng-model="mac.contact.senator" placeholder="Senator" class="md-no-underline" ng-change="mac.listSelect('Senator')">
-                            <md-optgroup label="Senators">
-                                <md-option ng-repeat="senator in mac.senatorList" value="{{senator}}">{{senator}}</md-option>
-                            </md-optgroup>
-                        </md-select>
 
-
-                        <md-select ng-model="mac.contact.district" placeholder="District" class="md-no-underline" ng-change="mac.listSelect('District')">
-                            <md-optgroup label="Districts">
-                                <md-option ng-repeat="district in mac.districtList" value="{{district}}">{{district}}</md-option>
-                            </md-optgroup>
-                        </md-select>
+                            <md-select ng-model="mac.contact.district" placeholder="District" class="md-no-underline" ng-change="mac.listSelect('District')">
+                                <md-optgroup label="Districts">
+                                    <md-option ng-repeat="district in mac.districtList" value="{{district}}">{{district}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <md-card-content>
-                <div layout="column">
-                    <div layout="row">
-                        <md-input-container flex="40">
-                            <md-icon md-svg-src="./img/account-box-black-24px.svg"></md-icon>
-                            <label>Name</label>
-                            <input ng-model="mac.contact.name" type="text">
-                        </md-input-container>
-                        <md-input-container flex="40">
-                            <md-icon md-svg-src="./img/phone-black-24px.svg"></md-icon>
-                            <label>Phone Number</label>
-                            <input ng-model="mac.contact.phoneNumber" type="text">
+                <md-card-content>
+                    <div layout="column">
+                        <div layout="row">
+                            <md-input-container flex="40">
+                                <md-icon md-svg-src="./img/account-box-black-24px.svg"></md-icon>
+                                <label>Name</label>
+                                <input ng-model="mac.contact.name" type="text">
+                            </md-input-container>
+                            <md-input-container flex="40">
+                                <md-icon md-svg-src="./img/phone-black-24px.svg"></md-icon>
+                                <label>Phone Number</label>
+                                <input ng-model="mac.contact.phoneNumber" type="text">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="40">
+                                <md-icon md-svg-src="./img/email-black-24px.svg"></md-icon>
+                                <label>Email</label>
+                                <input ng-model="mac.contact.email" type="text">
+                            </md-input-container>
+                            <md-input-container flex="40">
+                                <md-icon md-svg-src="./img/home-black-24px.svg"></md-icon>
+                                <label>Address</label>
+                                <input ng-model="mac.contact.address" type="text">
+                            </md-input-container>
+                        </div>
+                        <md-input-container>
+                            <textarea name="textArea" placeholder="Write a message!" ng-model="mac.contact.message"></textarea>
                         </md-input-container>
                     </div>
-                    <div layout="row">
-                        <md-input-container flex="40">
-                            <md-icon md-svg-src="./img/email-black-24px.svg"></md-icon>
-                            <label>Email</label>
-                            <input ng-model="mac.contact.email" type="text">
-                        </md-input-container>
-                        <md-input-container flex="40">
-                            <md-icon md-svg-src="./img/home-black-24px.svg"></md-icon>
-                            <label>Address</label>
-                            <input ng-model="mac.contact.address" type="text">
-                        </md-input-container>
-                    </div>
-                    <md-input-container>
-                        <textarea name="textArea" placeholder="Write a message!" ng-model="mac.contact.message"></textarea>
-                    </md-input-container>
-                </div>
 
-                <div class="g-recaptcha" data-sitekey="6LeyYD0UAAAAALw9umWm8rCg6sUIpzyFA93HAm2L"></div>
-                <br>
+                    <div class="g-recaptcha" data-sitekey="{{mac.publicKey}}"></div>
+                    <br>
 
-                <md-button class="md-raised md-primary" ng-click="mac.submitMessage(mac.contact)" ng-disabled="">Submit</md-button>
-            </md-card-content>
+                    <md-button class="md-raised md-primary" ng-click="mac.submitMessage(mac.contact)">Submit</md-button>
+
+                </md-card-content>
+            </form>
         </md-card>
     </div>
 </body>
