@@ -2,20 +2,22 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const nodeMailer = require('nodemailer');
-// console.log('Contact router open');
 const secretKey = require('../../config.js');
 const pool = require('./pool.js');
+// console.log('Contact router open');
 
 // reCaptcha authorization route
 router.post('/', function (req, res) {
+    //creating a variable that handles the entire url encoded call
     let captchaURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey.secret + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    var senatorEmail = "";
 
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.json({ "responseCode": 500, "responseDesc": "Please select captcha" });
     }
 
     request(captchaURL, function (err, response, body) {
-        body = JSON.parse(body);
+        let body = JSON.parse(body);
         // if captcha fails verification
         if (body.success !== undefined && !body.success) {
             return res.json({ "responseCode": 500, "responseDesc": "Failed captcha verification" });
@@ -40,7 +42,7 @@ router.post('/', function (req, res) {
                                 if (err) {
                                     return res.json({ "responseCode": 500, "responseDesc": "Could not find specified senator in database" });
                                 } else {
-                                    let senatorEmail = result.rows[0];
+                                    var senatorEmail = result.rows[0];
                                 }
                             })
                         } else {
@@ -49,7 +51,7 @@ router.post('/', function (req, res) {
                                 if (err) {
                                     return res.json({ "responseCode": 500, "responseDesc": "Could not find specified senator by district in database" });
                                 } else {
-                                    let senatorEmail = result.rows[0];
+                                    var senatorEmail = result.rows[0];
                                 }
                             });
                         }
@@ -73,6 +75,7 @@ router.post('/', function (req, res) {
                             html: contact.message
                         }
 
+                        //nodemailer function that actually sends mail
                         transporter.sendMail(mailOptions, function (error, info) {
                             if (error) {
                                 res.json({ "responseCode": 500, "responseDesc": "Nodemailer error" });

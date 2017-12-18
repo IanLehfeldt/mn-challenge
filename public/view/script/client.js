@@ -25,7 +25,7 @@ myApp.controller('MyAppController', ['vcRecaptchaService', 'MyAppService', '$mdD
 
     //Handles selecting a senator or district
     vm.listSelect = (select) => {
-        console.log('List selected as: ', select);
+        // console.log('List selected as: ', select);
         if (select === 'Senator') {
             vm.contact.district = undefined;
         } else if (select === 'District') {
